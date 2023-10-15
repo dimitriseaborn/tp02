@@ -8,6 +8,7 @@
 import java.util.Scanner;
 
 public class TP2G3SeabornD2351867 {
+
     public TP2G3SeabornD2351867() {
         tester_calculerRabaisEscalier();
         afficherCalculerMoyenne();
@@ -53,28 +54,32 @@ public class TP2G3SeabornD2351867 {
         System.out.println(estProche(3, 4, 1, 2, 2.82) == false);
     }
 
-    private boolean estProche(double x1, double y1, double x2, double y2, double distanceProche) {
+    private boolean estProche(double x1, double y1, double x2, double y2, double distanceMax) {
+        //distance = √((x2 − x1)² + (y2 − y1)²)
         double distance = Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
-        return distance <= distanceProche;
+        return distance <= distanceMax;
     }
 
     private void afficherCalculerMoyenne() {
-        double somme = 0;
+        double somme;
         int nombreLu;
-        int i = 0;
+        int i;
 
         System.out.println("** Calculer la moyenne de nombres positifs. **");
         System.out.println("Entrez un nombre négatif pour arrêter");
+        i = 1;
+        somme = 0;
         do {
-            nombreLu = lireEntier("Entrez le nombre #" + (i + 1) + ":");
+            nombreLu = lireEntier("Entrez le nombre #" + i + ":");
             if (nombreLu >= 0) {
                 somme += nombreLu;
             }
             i++;
         } while (nombreLu >= 0);
 
-        if (i > 1) {
-            System.out.println("La moyenne des " + (i - 1) + " nombres est : " + somme / (i - 1));
+        if ((i - 2) > 0) {
+            //On utilise i - 2, car le dernier nombre négatif n'est pas compté et la boucle incrémente avant de sortir
+            System.out.println("La moyenne des " + (i - 2) + " nombres est : " + somme / (i - 2));
         } else {
             System.out.println("Il faut entrer au moins un nombre pour calculer une moyenne.");
         }
